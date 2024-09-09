@@ -1,0 +1,53 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Sensor Data
+servers:
+  - url: http://localhost:8080
+paths:
+  /docs:
+    get:
+      summary: Documentation
+      operationId: Documentation
+      responses:
+        '200':
+          description: Documentation
+          content: 
+            text/html:
+              schema:
+                type: string
+      tags: 
+        - docs
+  /docs/sensors-api.yaml:
+    get:
+      summary: Specs
+      operationId: Specs
+      responses:
+        '200':
+          description: Specs
+          content: 
+            text/yaml:
+              schema:
+                type: string
+      tags: 
+        - docs
+  /:
+    get:
+      summary: Sensor data
+      operationId: Sensor data
+      responses:
+        '200':
+          description: Sensor data
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorData'
+      tags: 
+        - sensors
+components:
+  schemas:
+    SensorData:
+      title: SensorData
+      type: object
+      additionalProperties:
+        type: number
